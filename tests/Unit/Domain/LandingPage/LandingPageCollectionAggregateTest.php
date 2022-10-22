@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Domain;
+namespace Tests\Unit\Domain\LandingPage;
 
 use LandingPage\Domain\Events;
 use LandingPage\Domain\Exception\LandingPageException;
