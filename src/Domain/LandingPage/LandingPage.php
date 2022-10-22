@@ -15,7 +15,7 @@ use LandingPage\Domain\PublicationStatus;
 class LandingPage
 {
     public function __construct(
-        public readonly string    $id,
+        private readonly string   $id,
         private PublicationStatus $status,
         private readonly Events   $events,
     )
