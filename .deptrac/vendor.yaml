@@ -1,0 +1,27 @@
+layers:
+  - name: symfony/http
+    collectors:
+      - type: className
+        regex: ^Symfony\\Component\\HttpFoundation\\.*
+
+  - name: illuminate/http
+    collectors:
+      - type: className
+        regex: ^Illuminate\\Http\\.*
+      - type: className
+        regex: ^Illuminate\\Foundation\\Http\\.*
+
+  - name: attributes/autowire
+    collectors:
+      - type: className
+        regex: ^JeroenG\\Autowire\\Attribute\\Autowire$
+
+  - name: illuminate/db
+    collectors:
+      - type: className
+        regex: ^Illuminate\\Database\\.*
+
+  - name: ramsey/uuid
+    collectors:
+      - type: className
+        regex: ^Ramsey\\Uuid\\.*

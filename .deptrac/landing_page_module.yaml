@@ -1,0 +1,42 @@
+imports:
+  - vendor.yaml
+  - hexagonal_ddd_2.yaml
+
+parameters:
+  root: LandingPage
+
+layers:
+  - name: app/event-store-transaction
+    collectors:
+      - type: className
+        regex: ^App\\EventStore\\EventStoreTransaction$
+
+paths:
+  - ../src
+
+ruleset:
+  Adapters:
+    # vendor
+    - symfony/http
+    - illuminate/http
+
+    # conditionally allowed
+    - attributes/autowire
+
+  Ports:
+    # conditionally allowed
+    - app/event-store-transaction
+    - attributes/autowire
+
+  Application:
+    # conditionally allowed
+    - attributes/autowire
+
+  Domain:
+    # conditionally allowed
+    - attributes/autowire
+
+  Infrastructure:
+    - attributes/autowire
+    - illuminate/db
+    - ramsey/uuid
