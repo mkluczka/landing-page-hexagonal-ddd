@@ -9,7 +9,7 @@ use JeroenG\Autowire\Attribute\Autowire;
 #[Autowire]
 interface LandingPagesRepository
 {
-    public function getCollection(string $userId): UserLandingPages;
+    public function getCollection(string $userId): LandingPageCollection;
 
     public function getOne(string $landingPageId): LandingPage;
 }

@@ -6,8 +6,8 @@ namespace Tests\Unit\Application;
 
 use LandingPage\Application\CreateLandingPageHandler;
 use LandingPage\Domain\Exception\LandingPageException;
+use LandingPage\Domain\LandingPage\LandingPageCollection;
 use LandingPage\Domain\LandingPage\LandingPagesRepository;
-use LandingPage\Domain\LandingPage\UserLandingPages;
 use LandingPage\Domain\SourceTemplate\SourceTemplate;
 use LandingPage\Domain\SourceTemplate\SourceTemplatesRepository;
 use LandingPage\Ports\Command\CreateLandingPage;
@@ -51,7 +51,7 @@ final class CreateLandingPageHandlerTest extends TestCase
             ->method('getCollection')
             ->with($userId)
             ->willReturn(
-                $landingPageCollectionMock = $this->createMock(UserLandingPages::class)
+                $landingPageCollectionMock = $this->createMock(LandingPageCollection::class)
             );
 
         $landingPageCollectionMock

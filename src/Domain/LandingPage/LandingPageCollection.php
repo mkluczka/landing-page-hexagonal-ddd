@@ -10,7 +10,7 @@ use LandingPage\Domain\LandingPage\Event\LandingPageAddedToUserLandingPages;
 use LandingPage\Domain\LandingPage\Template\LandingTemplateFactory;
 use LandingPage\Domain\SourceTemplate\SourceTemplate;
 
-class UserLandingPages
+class LandingPageCollection
 {
     /**
      * @param array<LandingPage> $collection
@@ -39,7 +39,7 @@ class UserLandingPages
         $landingPage->create($name);
         $landingPage->changeTemplate($landingTemplateId);
 
-        $this->collection[$langingPageId] = $landingPage;
+        $this->collection[$langingPageId] = $langingPageId;
 
         $this->events->record(new LandingPageAddedToUserLandingPages(
             $langingPageId,

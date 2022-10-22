@@ -6,10 +6,10 @@ namespace LandingPage\Infrastructure;
 
 use LandingPage\Domain\Events;
 use LandingPage\Domain\LandingPage\LandingPage;
+use LandingPage\Domain\LandingPage\LandingPageCollection;
 use LandingPage\Domain\LandingPage\LandingPageFactory;
 use LandingPage\Domain\LandingPage\LandingPagesRepository;
 use LandingPage\Domain\LandingPage\Template\LandingTemplateFactory;
-use LandingPage\Domain\LandingPage\UserLandingPages;
 use LandingPage\Domain\PublicationStatus;
 
 final class LandingPagesFixedRepository implements LandingPagesRepository
@@ -24,9 +24,9 @@ final class LandingPagesFixedRepository implements LandingPagesRepository
     {
     }
 
-    public function getCollection(string $userId): UserLandingPages
+    public function getCollection(string $userId): LandingPageCollection
     {
-        return new UserLandingPages(
+        return new LandingPageCollection(
             $userId,
             [],
             $this->landingPageFactory,

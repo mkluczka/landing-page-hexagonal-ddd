@@ -8,10 +8,10 @@ use LandingPage\Domain\Events;
 use LandingPage\Domain\Exception\LandingPageException;
 use LandingPage\Domain\LandingPage\Event\LandingPageAddedToUserLandingPages;
 use LandingPage\Domain\LandingPage\LandingPage;
+use LandingPage\Domain\LandingPage\LandingPageCollection;
 use LandingPage\Domain\LandingPage\LandingPageFactory;
 use LandingPage\Domain\LandingPage\Template\LandingTemplate;
 use LandingPage\Domain\LandingPage\Template\LandingTemplateFactory;
-use LandingPage\Domain\LandingPage\UserLandingPages;
 use LandingPage\Domain\SourceTemplate\SourceTemplate;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -44,7 +44,7 @@ final class LandingPageCollectionAggregateTest extends TestCase
         $this->expectExceptionCode(LandingPageException::LANDING_PAGE_ID_IS_ALREADY_USED);
 
 
-        $sut = new UserLandingPages(
+        $sut = new LandingPageCollection(
             '6ae0ad81-6afa-423e-b982-a49405b385e4',
             [$landingPageId => $this->createStub(LandingPage::class)],
             $this->landingPageFactoryMock,
@@ -67,7 +67,7 @@ final class LandingPageCollectionAggregateTest extends TestCase
         $this->expectException(LandingPageException::class);
         $this->expectExceptionCode(LandingPageException::LANDING_PAGE_ID_IS_ALREADY_USED);
 
-        $sut = new UserLandingPages(
+        $sut = new LandingPageCollection(
             $userId,
             [],
             $this->landingPageFactoryMock,
@@ -121,7 +121,7 @@ final class LandingPageCollectionAggregateTest extends TestCase
             ->method('record')
             ->with(self::isInstanceOf(LandingPageAddedToUserLandingPages::class));
 
-        $sut = new UserLandingPages(
+        $sut = new LandingPageCollection(
             $userId,
             [],
             $this->landingPageFactoryMock,
