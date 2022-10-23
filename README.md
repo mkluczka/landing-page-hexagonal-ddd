@@ -9,6 +9,7 @@ cp .env.example .env
 php -v # 8.1
 
 composer install
+composer install -d tools
 
 composer qa:test
 composer qa:deptrac
