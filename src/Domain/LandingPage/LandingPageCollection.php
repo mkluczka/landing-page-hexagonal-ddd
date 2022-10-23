@@ -13,7 +13,7 @@ use LandingPage\Domain\SourceTemplate\SourceTemplate;
 class LandingPageCollection
 {
     /**
-     * @param array<LandingPage> $collection
+     * @param array<string> $collection
      */
     public function __construct(
         private readonly string                 $userId,

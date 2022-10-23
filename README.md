@@ -12,4 +12,5 @@ composer install
 
 composer qa:test
 composer qa:deptrac
+composer qa:static-analysis
 ```

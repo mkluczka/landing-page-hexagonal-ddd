@@ -1,0 +1,16 @@
+{
+    "require": {
+        "phpstan/phpstan": "^1.8",
+        "qossmic/deptrac-shim": "^0.18.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {}
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+    }
+}

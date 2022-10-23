@@ -1,4 +1,7 @@
 parameters:
-	level: 6
+	level: 9
 	paths:
 		- src
+
+	ignoreErrors:
+	    - '#Method .+ return type has no value type specified in iterable type array#'

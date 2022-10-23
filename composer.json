@@ -13,9 +13,7 @@
     "require-dev": {
         "jeroen-g/autowire": "^1.5",
         "mockery/mockery": "^1.2",
-        "phpstan/phpstan": "^1.8",
-        "phpunit/phpunit": "^9.3",
-        "qossmic/deptrac-shim": "^0.18.0"
+        "phpunit/phpunit": "^9.3"
     },
     "config": {
         "optimize-autoloader": true,
@@ -72,7 +70,8 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "qa:deptrac": "./vendor/bin/deptrac analyze --report-uncovered .deptrac/landing_page_module.yaml",
-        "qa:test": "./vendor/bin/phpunit --testdox"
+        "qa:deptrac": "./tools/vendor/bin/deptrac analyze --report-uncovered .deptrac/landing_page_module.yaml",
+        "qa:test": "./vendor/bin/phpunit --testdox",
+        "qa:static-analysis": "./tools/vendor/bin/phpstan"
     }
 }

@@ -34,9 +34,6 @@ final class LandingPagesFixedRepository implements LandingPagesRepository
 
     public function getOne(string $landingPageId): LandingPage
     {
-        return $this->landingPageFactory->fromExisting(
-            $landingPageId,
-            $this->events
-        );
+        return $this->landingPageFactory->fromExisting($landingPageId);
     }
 }

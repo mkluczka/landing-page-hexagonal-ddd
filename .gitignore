@@ -21,3 +21,5 @@ pact_log
 /log/pact.log
 /storage/event_store.log
 /storage/event_store.csv
+/tools/composer.lock
+/phpmetrics/
