@@ -4,25 +4,23 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Domain\LandingPage;
 
-use LandingPage\Domain\Events;
-use LandingPage\Domain\LandingPage\Event\LandingPageCreated;
-use LandingPage\Domain\LandingPage\Event\LandingPagePublished;
-use LandingPage\Domain\LandingPage\Event\LandingPageRepublished;
-use LandingPage\Domain\LandingPage\Event\LandingPageTemplateChanged;
 use LandingPage\Domain\LandingPage\LandingPage;
-use LandingPage\Domain\PublicationStatus;
+use LandingPage\Domain\LandingPage\State\LandingPageState;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class LandingPageTest extends TestCase
 {
-    private Events&MockObject $eventsMock;
+    private LandingPage $sut;
+    private LandingPageState&MockObject $stateMock;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->eventsMock = $this->createMock(Events::class);
+        $this->sut = new LandingPage(
+            $this->stateMock = $this->createMock(LandingPageState::class),
+        );
     }
 
     /**
@@ -30,19 +28,14 @@ final class LandingPageTest extends TestCase
      */
     public function shouldCreate(): void
     {
-        $landingName = 'Landing name';
+        $name = 'abc';
 
-        $this->eventsMock
+        $this->stateMock
             ->expects(self::once())
-            ->method('record')
-            ->with(self::isInstanceOf(LandingPageCreated::class));
+            ->method('create')
+            ->with($name);
 
-        $landingPage = new LandingPage(
-            '806d28bd-9f1b-458f-92e4-9a532ab0b145',
-            PublicationStatus::UNPUBLISHED,
-            $this->eventsMock
-        );
-        $landingPage->create($landingName);
+        $this->sut->create($name);
     }
 
     /**
@@ -50,19 +43,14 @@ final class LandingPageTest extends TestCase
      */
     public function shouldChangeTemplate(): void
     {
-        $landingTemplateId = 'f1e4d8cc-739d-4c94-9dbd-40267a8d25e4';
+        $landingTemplateId = '457c349e-b711-4887-8ff6-2debaddcf2bc';
 
-        $this->eventsMock
+        $this->stateMock
             ->expects(self::once())
-            ->method('record')
-            ->with(self::isInstanceOf(LandingPageTemplateChanged::class));
+            ->method('changeTemplate')
+            ->with($landingTemplateId);
 
-        $landingPage = new LandingPage(
-            '806d28bd-9f1b-458f-92e4-9a532ab0b145',
-            PublicationStatus::UNPUBLISHED,
-            $this->eventsMock
-        );
-        $landingPage->changeTemplate($landingTemplateId);
+        $this->sut->changeTemplate($landingTemplateId);
     }
 
     /**
@@ -70,38 +58,10 @@ final class LandingPageTest extends TestCase
      */
     public function shouldPublish(): void
     {
-        $landingPageId = '806d28bd-9f1b-458f-92e4-9a532ab0b145';
-
-        $this->eventsMock
+        $this->stateMock
             ->expects(self::once())
-            ->method('record')
-            ->with(self::isInstanceOf(LandingPagePublished::class));
+            ->method('publish');
 
-        $landingPage = new LandingPage(
-            $landingPageId,
-            PublicationStatus::UNPUBLISHED,
-            $this->eventsMock
-        );
-        $landingPage->publish();
-    }
-
-    /**
-     * @test
-     */
-    public function shouldRepublish(): void
-    {
-        $landingPageId = '806d28bd-9f1b-458f-92e4-9a532ab0b145';
-
-        $this->eventsMock
-            ->expects(self::once())
-            ->method('record')
-            ->with(self::isInstanceOf(LandingPageRepublished::class));
-
-        $landingPage = new LandingPage(
-            $landingPageId,
-            PublicationStatus::PUBLISHED,
-            $this->eventsMock
-        );
-        $landingPage->publish();
+        $this->sut->publish();
     }
 }

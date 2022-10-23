@@ -6,7 +6,7 @@ namespace Tests\Integration;
 
 use JildertMiedema\LaravelTactician\DispatchesCommands;
 use LandingPage\Application\CreateLandingPageHandler;
-use LandingPage\Infrastructure\LandingPagesFixedRepository;
+use LandingPage\Domain\LandingPage\LandingPageFactory;
 use LandingPage\Ports\Command\PublishLandingPage;
 use Tests\TestCase;
 
@@ -45,7 +45,7 @@ final class PublishLandingPageHandlerTest extends TestCase
      */
     public function shouldRepublishLandingPage(): void
     {
-        $landingPageId = LandingPagesFixedRepository::PUBLISHED_LANDING_PAGE_ID;
+        $landingPageId = LandingPageFactory::PUBLISHED_LANDING_PAGE_ID;
 
         $command = new PublishLandingPage($landingPageId);
         $this->dispatch($command);

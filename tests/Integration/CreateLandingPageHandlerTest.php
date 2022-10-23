@@ -38,7 +38,6 @@ final class CreateLandingPageHandlerTest extends TestCase
 
         $this->fakeUuidFactory([$transactionId, null, null, $landingTemplateId]);
 
-
         $command = new CreateLandingPage($landingPageId, $sourceTemplateId, $landingName, $userId);
         $this->dispatch($command);
 
